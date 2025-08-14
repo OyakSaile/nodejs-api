@@ -1,8 +1,9 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { Client } from "pg";
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+if (!process.env.DATABASE_URL) {
+  throw new Error("The DATABASE_URL env is required.");
+}
+
+export const db = drizzle(process.env.DATABASE_URL, {
+  logger: true,
 });
-
-export const db = drizzle(client);
