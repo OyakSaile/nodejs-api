@@ -1,5 +1,11 @@
 import fastify from "fastify";
-import crypto from "node:crypto";
+import { db } from "./src/database/client.ts";
+import { courses } from "./src/database/schema.ts";
+import {
+  validatorCompiler,
+  serializerCompiler,
+} from "fastify-type-provider-zod";
+import { eq } from "drizzle-orm";
 
 const server = fastify({
   logger: {
@@ -13,51 +19,63 @@ const server = fastify({
   },
 });
 
-const courses = [
-  { id: "1", title: "Curso de Node.js" },
-  { id: "2", title: "Curso de React" },
-  { id: "3", title: "Curso de React Native" },
-];
+server.setValidatorCompiler(validatorCompiler);
+server.setSerializerCompiler(serializerCompiler);
 
-server.get("/courses", (request, reply) => {
-  return reply.send({ courses });
-});
+server.get(
+  "/courses",
+  {
+    schema,
+  },
+  async (request, reply) => {
+    const result = await db.select().from(courses);
 
-server.get("/courses/:id", (request, reply) => {
-  type Params = {
-    id: string;
-  };
-
-  const params = request.params as Params;
-  const courseId = params.id;
-
-  const course = courses.find((course) => course.id === courseId);
-
-  if (course) {
-    return { course };
+    return reply.send({ courses: result });
   }
+);
 
-  return reply.status(404).send();
-});
+// server.get("/courses/:id", async (request, reply) => {
+//   type Params = {
+//     id: string;
+//   };
 
-server.post("/courses", (request, reply) => {
-  type Body = {
-    title: string;
-  };
+//   const params = request.params as Params;
 
-  const courseId = crypto.randomUUID();
+//   const courseId = params.id;
 
-  const body = request.body as Body;
-  const courseTitle = body.title;
+//   const course = await db
+//     .select()
+//     .from(courses)
+//     .where(eq(courses.id, courseId));
 
-  if (!courseTitle) {
-    return reply.status(400).send({ message: "Título obrigatório." });
-  }
+//   if (course.length > 0) {
+//     return { course: course[0] };
+//   }
 
-  courses.push({ id: courseId, title: courseTitle });
+//   return reply.status(404).send();
+// });
 
-  return reply.status(201).send({ courseId });
-});
+// server.post("/courses", async (request, reply) => {
+//   type Body = {
+//     name: string;
+//   };
+
+//   const body = request.body as Body;
+//   const courseName = body.name;
+
+//   if (!courseName) {
+//     return reply.status(400).send({ message: "Título obrigatório." });
+//   }
+
+//   const result = await db
+//     .insert(courses)
+//     .values({ name: courseName })
+//     .returning();
+
+//   return reply.status(201).send({
+//     id: result[0].id,
+//   });
+// });
 
 server.listen({ port: 3333 }).then(() => {
   console.log("HTTP server running!");
