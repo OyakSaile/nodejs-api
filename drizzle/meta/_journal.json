@@ -22,6 +22,27 @@
       "when": 1755183464811,
       "tag": "0002_small_mac_gargan",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755486030824,
+      "tag": "0003_nasty_bloodaxe",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1755488136548,
+      "tag": "0004_fantastic_gargoyle",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1755488462867,
+      "tag": "0005_serious_blackheart",
+      "breakpoints": true
     }
   ]
 }
