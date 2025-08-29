@@ -2,18 +2,22 @@ import { expect, test } from "vitest";
 import request from "supertest";
 import { server } from "../app.ts";
 import { faker } from "@faker-js/faker";
+import { makeAuthenticatedUser } from "../tests/factories/make-user.ts";
 
-function soma(n1: number, n2: number) {
-  return n1 + n2;
-}
-
-test("cria um curso com sucesso", async () => {
+test("create a course", async () => {
   await server.ready();
+
+  const { token } = await makeAuthenticatedUser("manager");
 
   const response = await request(server.server)
     .post("/courses")
     .set("Content-Type", "application/json")
-    .send({ title: faker.lorem.word(4) });
+    .set("Authorization", token)
+    .send({ title: faker.lorem.word(5) });
 
-  console.log(response.body);
+  expect(response.status).toBe(201);
+
+  expect(response.body).toEqual({
+    courseId: expect.any(String),
+  });
 });

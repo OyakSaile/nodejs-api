@@ -5,43 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1755039613419,
-      "tag": "0000_known_randall_flagg",
+      "when": 1756441998015,
+      "tag": "0000_mute_inertia",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1755039788986,
-      "tag": "0001_mean_robin_chapel",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1755183464811,
-      "tag": "0002_small_mac_gargan",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1755486030824,
-      "tag": "0003_nasty_bloodaxe",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1755488136548,
-      "tag": "0004_fantastic_gargoyle",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1755488462867,
-      "tag": "0005_serious_blackheart",
+      "when": 1756442110416,
+      "tag": "0001_confused_speed_demon",
       "breakpoints": true
     }
   ]

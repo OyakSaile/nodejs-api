@@ -1,8 +1,9 @@
 POST http://localhost:3333/courses
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NzFjZTNiOS0zNmI1LTQ4OTYtOGQwYy03YmUwZmQzNWJiNzQiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NjQ0NzE0NX0.3ieumtKl30vq3UcU2e5ObOW7Y67rGYdjYbdDPHdKly8
 
 {
-  "title": "Curso de Angular"
+  "title": "Curso Novo"
 }
 
 ###
@@ -11,4 +12,15 @@ GET http://localhost:3333/courses?orderBy=title
 
 ###
 
-GET http://localhost:3333/courses/027a49a3-0c7e-441e-a1d6-4ec797c13306
+GET http://localhost:3333/courses/7fe617b9-2cb4-4ee2-bba4-76420b735409
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NzFjZTNiOS0zNmI1LTQ4OTYtOGQwYy03YmUwZmQzNWJiNzQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc1NjQ0NzA4NX0.hFsN2WqyZF6RAEsPpl5j-VnDMDBdOvB4CYHhKhquocM
+
+###
+POST http://localhost:3333/sessions
+Content-Type: application/json
+
+
+{
+  "email": "Murilo.Carvalho@gmail.com",
+  "password" : "123456"
+}
